@@ -2,12 +2,59 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.6931032800836722 0.6931032800836722 0.1980295085953349 0.75
-  position 1.2 1.6 2.3
+  orientation -0.3589744571784548 0.80570035894947 0.4711520674709272 2.040482175889906
+  position 0.42015960578029926 0.9254270329586022 0.08781041431008056
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 Floor {
+}
+Robot {
+  translation 0 0.2 0
+  children [
+    DEF ROBOT_BODY Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0 0
+      }
+      geometry DEF G_BODY Box {
+        size 0.25 0.07 0.1
+      }
+    }
+    DEF WHEEL1_JOINT HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor -0.05 0 0.06
+      }
+      device [
+        RotationalMotor {
+          name "motor_right"
+        }
+      ]
+      endPoint DEF WHEEL1 Solid {
+        translation -0.05 0 0.06
+        rotation -1 0 0 1.5707996938995745
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry DEF G_WHEEL Cylinder {
+              height 0.02
+              radius 0.075
+            }
+          }
+        ]
+        boundingObject USE G_WHEEL
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject USE G_BODY
+  physics Physics {
+  }
 }
