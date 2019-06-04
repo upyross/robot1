@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.3589744571784548 0.80570035894947 0.4711520674709272 2.040482175889906
-  position 0.42015960578029926 0.9254270329586022 0.08781041431008056
+  orientation -0.7654011980890931 0.6409978277855244 0.05729564327258982 0.23251081758538297
+  position 1.1921492675022163 0.23483403588035184 2.333478073253706
 }
 TexturedBackground {
 }
@@ -12,15 +12,34 @@ TexturedBackgroundLight {
 Floor {
 }
 Robot {
-  translation 0 0.2 0
+  translation 0 0.075 0
   children [
-    DEF ROBOT_BODY Shape {
-      appearance PBRAppearance {
-        baseColor 0.8 0 0
-      }
-      geometry DEF G_BODY Box {
-        size 0.25 0.07 0.1
-      }
+    DEF GR_BODY Group {
+      children [
+        DEF ROBOT_BODY Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0 0
+          }
+          geometry DEF G_BODY Box {
+            size 0.25 0.07 0.1
+          }
+        }
+        Transform {
+          translation 0.11 -0.05 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.4470588235294118 0.6235294117647059 0.8117647058823529
+                roughness 1
+                metalness 0
+              }
+              geometry Sphere {
+                radius 0.015
+              }
+            }
+          ]
+        }
+      ]
     }
     DEF WHEEL1_JOINT HingeJoint {
       jointParameters HingeJointParameters {
@@ -36,7 +55,7 @@ Robot {
         translation -0.05 0 0.06
         rotation -1 0 0 1.5707996938995745
         children [
-          Shape {
+          DEF SH_WHEEL Shape {
             appearance PBRAppearance {
               baseColor 0 0 0
               roughness 1
@@ -53,8 +72,30 @@ Robot {
         }
       }
     }
+    DEF WHEEL2_JOINT HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor -0.05 0 -0.06
+      }
+      device [
+        RotationalMotor {
+          name "motor_left"
+        }
+      ]
+      endPoint DEF WHEEL2 Solid {
+        translation -0.05 0 -0.06
+        rotation -1 0 0 1.5707996938995745
+        children [
+          USE SH_WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE SH_WHEEL
+        physics Physics {
+        }
+      }
+    }
   ]
-  boundingObject USE G_BODY
+  boundingObject USE GR_BODY
   physics Physics {
   }
   controller "robot1"
