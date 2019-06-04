@@ -57,4 +57,5 @@ Robot {
   boundingObject USE G_BODY
   physics Physics {
   }
+  controller "robot1"
 }
