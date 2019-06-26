@@ -1,25 +1,4 @@
-#VRML_SIM R2019a utf8
-WorldInfo {
-  contactProperties [
-    ContactProperties {
-      material1 "robotBody"
-      material2 "floor"
-      coulombFriction [
-        0
-      ]
-    }
-  ]
-}
-Viewpoint {
-  orientation 0.9925425804954662 -0.087459126373533 -0.08491246738482941 4.73445245166908
-  position 0.24644872918010102 2.223423377956661 0.15001450966933966
-}
-TexturedBackground {
-}
-TexturedBackgroundLight {
-}
-Floor {
-}
+#VRML_OBJ R2019a utf8
 Robot {
   translation 0 0.075 0
   children [
@@ -64,8 +43,8 @@ Robot {
         }
       ]
       endPoint DEF WHEEL1 Solid {
-        translation -0.049993298639710804 4.1991004434008365e-06 0.059998844022989384
-        rotation -0.9999897256320203 0.00320538877059385 -0.003205325759751868 1.570810065190105
+        translation -0.05 0 0.06
+        rotation -1 0 0 1.5707996938995745
         children [
           DEF SH_WHEEL Shape {
             appearance PBRAppearance {
@@ -95,8 +74,8 @@ Robot {
         }
       ]
       endPoint DEF WHEEL2 Solid {
-        translation -0.05000464053569955 -4.475340648047137e-06 -0.06000114527398893
-        rotation -0.9999897819929817 0.0031965094835165403 -0.003196597683583317 1.5708098619478401
+        translation -0.05 0 -0.06
+        rotation -1 0 0 1.5707996938995745
         children [
           USE SH_WHEEL
         ]
@@ -127,27 +106,8 @@ Robot {
       resolution 1
     }
   ]
-  contactMaterial ""
   boundingObject USE GR_BODY
   physics Physics {
-    mass 1
-    centerOfMass [
-      0 0 0
-    ]
   }
   controller "robot1"
-}
-Solid {
-  translation 0.6046674017296654 0.050000000000000225 0.3023556441233873
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.3607843137254902 0.20784313725490197 0.4
-      }
-      geometry DEF G_OBSTACLE1 Box {
-        size 0.1 0.1 0.1
-      }
-    }
-  ]
-  boundingObject USE G_OBSTACLE1
 }
