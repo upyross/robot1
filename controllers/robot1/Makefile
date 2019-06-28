@@ -66,7 +66,7 @@
 ### VERBOSE = 1
 ###
 ###-----------------------------------------------------------------------------
-
+C_SOURCES = robot1.c mimat.c
 ### Do not modify: this includes Webots global Makefile.include
 space :=
 space +=

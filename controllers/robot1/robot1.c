@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "mimat.h"
+
 /*
  * Macros
  */
@@ -37,6 +39,7 @@ double initial_angle_wheel1;
 /*
  * Auxiliar functions
  */
+
 int checkForObstacles(WbDeviceTag distance_sensor) {
   double distance = wb_distance_sensor_get_value(distance_sensor);
 
@@ -121,11 +124,16 @@ int main(int argc, char **argv)
   float velocity = 0.5;
   float angle;
 
+  float prom;
+
   /* main loop
    * Perform simulation steps of TIME_STEP milliseconds
    * and leave the loop when the simulation is over
    */
   while (wb_robot_step(TIME_STEP) != -1) {
+    prom = promedio(2.5, 5.6);
+    printf("El promedio es: %f\n", prom);
+
     if (robot_state == GO) {
       ds_state = checkForObstacles(dist_sensor);
 
